@@ -6,12 +6,20 @@ import authRouter from "./routes/auth.route.js";
 import listingRouter from "./routes/listing.route.js";
 import cookieParser from "cookie-parser";
 import serverless from "serverless-http";
+import cors from "cors";
+
 
 // Load environment variables
 dotenv.config();
 
 // Initialize Express app
 const app = express();
+
+// _Enable CORS middleware
+app.use(cors({
+  origin: ['https://stlc.vercel.app', 'http://localhost:5173'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+}));
 
 // Middleware
 app.use(cookieParser());
